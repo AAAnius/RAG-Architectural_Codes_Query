@@ -1,10 +1,9 @@
 from config import config
 from langchain_community.document_loaders import TextLoader
-from langchain.vectorstores import FAISS
+from langchain_community.vectorstores import FAISS
 from langchain_community.vectorstores.utils import DistanceStrategy
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.embeddings import HuggingFaceEmbeddings
-import hashlib
+from langchain_community.embeddings import HuggingFaceEmbeddings
 import os
 def data_loader(path):
     loader = TextLoader(path, encoding='utf8')#这里标注编码类型
@@ -33,7 +32,7 @@ def doc_to_vector(documents,file_name):
         encode_kwargs=encode_kwargs
         )
     #保存向量库路径
-    save_path = os.path.join('./bce_vectorstore', file_name)
+    save_path = os.path.join('./bge_vectorstore', file_name)
 
     faiss_vectorstore = FAISS.from_documents(documents,embed_model,distance_strategy=DistanceStrategy.MAX_INNER_PRODUCT)
     # 确保目录存在
@@ -53,7 +52,7 @@ def data_processor(file_path,input):
     return related_passages
 
 if __name__ == "__main__":
-    file_path = config['file_path'][1] 
+    file_path = config['file_path'][0] 
     faiss_vectorstore = build_vectorStore(file_path)
     retriever = faiss_vectorstore.as_retriever(search_type="similarity", search_kwargs={"score_threshold": 0.1, "k": 5})
     related_passages = retriever.invoke('疏散楼梯')

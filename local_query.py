@@ -1,7 +1,7 @@
 '''
 根据已有得向量数据库进行查询
 '''
-from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from config import config
 from loader import build_vectorStore
@@ -36,6 +36,7 @@ def get_sentence_similarity(query,sentence_list,):
         if max_score == 0:
             print('查询不到相关内容')
         else:
+            print(doc_name)
             return doc_name
         
 
@@ -59,10 +60,21 @@ def local_query():
     prompt = faiss_vectorstore.similarity_search_with_score(query,k = 5)
     res = call_zhipuai(query,prompt)
     return res
-
+def gradio_query(input):
+    vectorstore_path = config['vectorstore_path']['建筑设计防火规范']
+    embed_model = build_embedding_model()
+    #输入向量库，输入嵌入模型，允许反序列化
+    faiss_vectorstore = FAISS.load_local(vectorstore_path, embed_model,allow_dangerous_deserialization=True)
+    query = input
+    prompt = faiss_vectorstore.similarity_search_with_score(query,k = 5)
+    res = call_zhipuai(query,prompt)
+    return res
 
 
 if __name__ == "__main__":
     res = local_query()
+    print(res)
+    
+    
 
     print('=======Done========')

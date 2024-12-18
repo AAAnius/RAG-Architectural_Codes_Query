@@ -17,6 +17,7 @@
 > FAISS向量数据库
 > Langchain相关包
 > 嵌入模型 ‘bce-embedding-base_v1’
+> gradio、uvicorn 用于构建web可视化应用
 ```
 
   ### 文件说明
@@ -33,4 +34,4 @@
 
   《住宅设计规范》GB50096-2011 chunk：200
 
-   ##### 注：向量模型为bce-embedding-base_v1
+   ##### 注：目前向量模型为bge-embedding-base_v1
