@@ -2,7 +2,7 @@ import config
 from zhipuai import ZhipuAI
 
 def call_zhipuai(user_input,prompt):
-    client = ZhipuAI(api_key='1c4da08889fe1e0b83fafb62e701c275.bO3FZCRY6qjpGly2')
+    client = ZhipuAI(api_key='Your API')
     response = client.chat.completions.create(
         model = 'glm-4-plus',
         messages=[
