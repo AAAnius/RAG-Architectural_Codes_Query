@@ -13,7 +13,6 @@ config = {
      'model_name':'BAAI/bge-large-zh-v1.5',
      }
 
-
 if __name__ == "__main__":
     print(config['model_name'])
     print(config['file_path'][1])

@@ -70,7 +70,6 @@ def gradio_query(input):
     res = call_zhipuai(query,prompt)
     return res
 
-
 if __name__ == "__main__":
     res = local_query()
     print(res)

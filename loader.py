@@ -51,6 +51,7 @@ def data_processor(file_path,input):
     related_passages = retriever.invoke(input)
     return related_passages
 
+
 if __name__ == "__main__":
     file_path = config['file_path'][0] 
     faiss_vectorstore = build_vectorStore(file_path)

@@ -3,8 +3,6 @@ from fastapi import FastAPI
 import time
 from local_query import gradio_query
 import local_query
-# 定义问答逻辑
-
 
 # 创建Gradio界面
 def slow_echo(message,history):
@@ -13,9 +11,7 @@ def slow_echo(message,history):
         time.sleep(0.01)
         yield  message[: i+1]
     return message
-        
-  
-        
+           
 demo =gr.ChatInterface(
     slow_echo,
     type="messages",
@@ -27,8 +23,6 @@ demo =gr.ChatInterface(
     examples=["查询规范", "疏散楼梯有哪些要求?", "防火分区如何设置"],
     cache_examples=True,
 )
-
-
 
 # 创建FastAPI应用
 app = FastAPI()
