@@ -61,7 +61,7 @@ def local_query():
     res = call_zhipuai(query,prompt)
     return res
 def gradio_query(input):
-    vectorstore_path = config['vectorstore_path']['建筑设计防火规范']
+    vectorstore_path = config['vectorstore_path']['住宅设计规范']
     embed_model = build_embedding_model()
     #输入向量库，输入嵌入模型，允许反序列化
     faiss_vectorstore = FAISS.load_local(vectorstore_path, embed_model,allow_dangerous_deserialization=True)
@@ -73,7 +73,4 @@ def gradio_query(input):
 if __name__ == "__main__":
     res = local_query()
     print(res)
-    
-    
-
     print('=======Done========')
